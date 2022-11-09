@@ -1,0 +1,19 @@
+﻿@using BlazorQuoteIssue
+@using Microsoft.JSInterop
+
+<UserComponent User="_user"/>
+<button onclick="@OnClick">Fetch from attribute</button>
+
+@code
+{
+    private readonly User _user = new("Justin", 24);
+
+    [Inject]
+    public required IJSRuntime JsRuntime { get; init; }
+
+    private async Task OnClick()
+    {
+        await JsRuntime.InvokeVoidAsync("window.singleQuotesIssue");
+    }
+
+}

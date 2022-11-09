@@ -1,0 +1,16 @@
+﻿@using System.Text.Json
+@using System.ComponentModel.DataAnnotations
+@using BlazorQuoteIssue
+
+<p data-single-quotes='@UserAsJson' data-double-quotes="@UserAsJson">
+    I'm @User.Name and @User.Age years old.
+</p>
+
+@code {
+
+    [Parameter]
+    [EditorRequired]
+    public required User User { get; set; }
+
+    private string UserAsJson => JsonSerializer.Serialize(User);
+}
